@@ -1,0 +1,32 @@
+#
+# docker-compose.yaml
+#
+# docker-compose file for DummyDataGen.
+#
+# @author Robert Carr <bob@lab183.com>
+
+--- 
+# Set compose api version
+version: "3.7"
+
+services:
+  datagen: 
+    image: "dummy-datagen"
+    build: 
+      dockerfile: docker/Dockerfile
+      context: .
+    command: python dummy_datagen.py
+    environment:
+      CONTEXT: "dev"
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./datagen:/app
+    deploy:
+      mode: replicated
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 120s
