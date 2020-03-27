@@ -1,2 +1,2 @@
 # Dummy Data Gen
-Just a hack to get some data into a Postgres data for Grafana to eat.
+Just a hack to get some data into a Postgres database for Grafana to eat.
