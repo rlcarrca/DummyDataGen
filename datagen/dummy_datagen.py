@@ -1,19 +1,23 @@
 import os
-import psycopg2
-import time
 import random
+import time
+
+import psycopg2
 from dotenv import load_dotenv
 
 load_dotenv(verbose=True)
 
+def hello_dummy():
+    return "howdy"
 
+    
 def db_connect(connectStr):
     try:
         conn = psycopg2.connect(connectStr)
         return conn
     except Exception as e:
         print(e)
-        return None 
+        return None
 
 
 def add_meteo_data(conn):
@@ -25,6 +29,7 @@ def add_meteo_data(conn):
     cursor.close()
     conn.commit()
 
+
 def get_connection_str():
     DB_NAME = os.getenv("DB_NAME")
     DB_HOST = os.getenv("DB_HOST")
@@ -34,7 +39,8 @@ def get_connection_str():
     connectStr = f"dbname='{DB_NAME}' user='{DB_USER}' host='{DB_HOST}' port={DB_PORT} password='{DB_PASSWORD}'"
     return connectStr
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
 
     conn = db_connect(get_connection_str())
 
