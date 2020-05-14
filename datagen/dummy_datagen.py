@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv(verbose=True)
 
 def hello_dummy():
-    return "howdy!"
+    return "howdy"
 
     
 def db_connect(connectStr):
